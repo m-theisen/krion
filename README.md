@@ -1,7 +1,6 @@
 # Live Debugging
 
 ## Requirements
-
 ### Container Runtime/Docker
 To run this lab locally you'll need a container runtime. Typically `docker` is used for this.
 For MacOS or Windows it can be downloaded via the [official webpage](https://www.docker.com/products/docker-desktop/).
@@ -14,11 +13,29 @@ Alternatives to Docker Desktop are:
 ### Git Client (optional)
 You can download the archive version of this repository, but using a git-client makes it a hint simpler. You can download it on [this webpage](https://git-scm.com/install/).
 
+### installation steps for Linux (Docker & Git)
+for simplification, we will switch to root so as all subsequent commands are run initially under root context
+```bash
+sudo su -
+```
+#### 1. Update OS packages
+```bash
+dnf update -y
+```
+#### 2. Install Docker and Git
+```bash
+dnf install -y docker git
+```
+#### 3. Start & enable Docker service
+```bash
+systemctl start docker
+systemctl enable docker
+```
 
 ## Lab Preparation
 Download the repo by running
 ```bash
-git clone ...
+git clone https://github.com/m-theisen/krion.git
 ```
 or by clicking the green "Code" button and selecting "Download ZIP".
 
@@ -61,7 +78,7 @@ Inspect active open ports:
 netstat -tlpn
 ```
 
-Edit Nginx configuration:
+Edit Nginx configuration (change port 5001 > 5000):
 ```
 nano /etc/nginx/conf.d/default.conf
 ```
@@ -73,7 +90,7 @@ nginx -s reload
 
 ### Permission Debugging
 
-Start: Run `curl http://127.0.0.1:8080` -> Internal Server Error
+Run `curl http://127.0.0.1:8080` -> Internal Server Error
 
 Inspect app error logs:
 ```bash
@@ -82,7 +99,7 @@ cat /var/log/api.err.log
 
 Inspect file permissions:
 ```bash
-ls -la /etx/app/app.conf
+ls -la /etc/app/app.conf
 ```
 
 Fix permissions:
@@ -93,4 +110,3 @@ chmod 644 /etc/app/app.conf
 ### Final Check
 
 Run `curl http://127.0.0.1` -> expected answer
-
