@@ -39,18 +39,22 @@ git clone https://github.com/m-theisen/krion.git
 ```
 or by clicking the green "Code" button and selecting "Download ZIP".
 
-Open a terminal and run:
+navigate to the folder where the repo got cloned
+```bash
+cd krion
+```
+build the container and run it in detached mode
 ```bash
 docker build -t linux-vm-lab .
-docker run --rm -p 8080:8080 --name student-vm linux-vm-lab
+docker run -d -p 8080:8080 --name student-vm linux-vm-lab
+#docker run --rm -p 8080:8080 --name student-vm linux-vm-lab
 ```
 Note: In case you're connected to a metered internet connection, the first command will download larger files, hence might consume more of your data volume than expected.
 
-In a second terminal run:
+connect to the container
 ```bash
 docker exec -it student-vm /bin/bash
 ```
-
 Now you are "connected" to the container as if you sshed into a remote VM.
 
 ## Task
@@ -66,7 +70,11 @@ All steps are executed inside the terminal where you ran the `docker exec ...` c
 
 ### Network Debugging
 
-Start: Run `curl http://127.0.0.1:8080` -> Bad Gateway
+Check ngnix web server 
+```bash
+curl http://127.0.0.1:8080
+```
+this gives the result > Bad Gateway
 
 Checking Nginx error logs:
 ```bash
@@ -82,6 +90,7 @@ Edit Nginx configuration (change port 5001 > 5000):
 ```
 nano /etc/nginx/conf.d/default.conf
 ```
+in nano you need to click the following buttons in the mentioned order so as to save and exit CTRL+X, Y, ENTER
 
 Reload Nginx:
 ```bash
@@ -89,8 +98,11 @@ nginx -s reload
 ```
 
 ### Permission Debugging
-
-Run `curl http://127.0.0.1:8080` -> Internal Server Error
+Check ngnix web server
+```bash
+curl http://127.0.0.1:8080
+```
+This gives the result -> Internal Server Error
 
 Inspect app error logs:
 ```bash
@@ -108,5 +120,6 @@ chmod 644 /etc/app/app.conf
 ```
 
 ### Final Check
-
-Run `curl http://127.0.0.1` -> expected answer
+```bash
+curl http://127.0.0.1:8080
+```
