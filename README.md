@@ -123,3 +123,11 @@ chmod 644 /etc/app/app.conf
 ```bash
 curl http://127.0.0.1:8080
 ```
+
+## Clean-Up
+Stop the running container by running in a terminal on
+your host machine
+```bash
+docker stop student-vm
+```
+or by stopping it in the Docker Desktop UI.
