@@ -58,7 +58,6 @@ build the container and run it in detached mode
 ```bash
 docker build -t linux-vm-lab .
 docker run -d -p 8080:8080 --name student-vm linux-vm-lab
-#docker run --rm -p 8080:8080 --name student-vm linux-vm-lab
 ```
 Note: In case you're connected to a metered internet connection, the first command will download larger files, hence might consume more of your data volume than expected.
 
@@ -67,4 +66,6 @@ connect to the container
 docker exec -it student-vm /bin/bash
 ```
 Now you are "connected" to the container as if you sshed into a remote VM.
+
+Check the `task.md` file inside the week-folder for exercise specific instructions.
 
