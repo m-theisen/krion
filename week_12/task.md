@@ -1,5 +1,5 @@
 # Task
-Opening a browser on your local system and connecting to `http://127.0.0.1:8080` should produce the output `{"data":"<Zen Quote from GitHub>","latency_seconds":0.05,"status":"success"}`. The `data` part will change over time, for us the most interesting part is the `latency_seconds` field. It should be around 0.05. This won't be the case after starting this lab, because there is a bug inside the container.
+Opening a browser on your local system and connecting to `http://127.0.0.1:8080/fetch` should produce the output `{"data":"<Zen Quote from GitHub>","latency_seconds":0.05,"status":"success"}`. The `data` part will change over time, for us the most interesting part is the `latency_seconds` field. It should be around 0.05. This won't be the case after starting this lab, because there is a bug inside the container.
 
 ## Application Overview
 The container runs a simple python application, which returns the output of `https://api.github.com/zen`, as an unprivileged user. The app is restarted automatically if it crashes or is killed.
