@@ -11,7 +11,7 @@ Most steps are executed inside the terminal where you ran the `docker exec ...` 
 
 ## Latency Debugging
 
-In a web-browser visit `http://127.0.0.1:5000/fetch`, it will take a while for it to load, be patient. After the page loads you can open the developer tools (press F12) and go to the `Network` tab. Reload the page again. Now you see (independently from the `latency_seconds` field in the response) how long the requests takes.
+In a web-browser visit `http://127.0.0.1:8080/fetch`, it will take a while for it to load, be patient. After the page loads you can open the developer tools (press F12) and go to the `Network` tab. Reload the page again. Now you see (independently from the `latency_seconds` field in the response) how long the requests takes.
 
 Now switching to the container, confirm the problem is on the "VM" and not the network connection between the "VM" and the browser
 ```bash
