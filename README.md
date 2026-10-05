@@ -57,9 +57,14 @@ cd week_xx
 build the container and run it in detached mode
 ```bash
 docker build -t linux-vm-lab .
-docker run -d -p 8080:8080 --name student-vm linux-vm-lab
+docker run -d --rm -p 8080:8080 --name student-vm linux-vm-lab
 ```
-Note: In case you're connected to a metered internet connection, the first command will download larger files, hence might consume more of your data volume than expected.
+> [!CAUTION]
+> In case you're connected to a metered internet connection, the first command will download larger files, hence might consume more of your data volume than expected.
+
+> [!TIP]
+> Remember to re-run the docker build commands when switching to a different week/folder otherwise the task won't match the container.
+> Alternatively you can use a unique name for each week, for example `linux-vm-lab-week-xx`.
 
 connect to the container
 ```bash

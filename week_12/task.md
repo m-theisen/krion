@@ -1,4 +1,7 @@
 # Task
+> [!CAUTION]
+> You need to 
+
 Opening a browser on your local system and connecting to `http://127.0.0.1:8080/fetch` should produce the output `{"data":"<Zen Quote from GitHub>","latency_seconds":0.05,"status":"success"}`. The `data` part will change over time, for us the most interesting part is the `latency_seconds` field. It should be around 0.05. This won't be the case after starting this lab, because there is a bug inside the container.
 
 ## Application Overview
@@ -26,12 +29,12 @@ time dig api.github.com
 -> long wait time and `communications error to ...`
 -> wrong/broken DNS server
 
-Remove broken server from `/etc/resolve.conf`
+Remove broken server from `/etc/resolv.conf`
 ```bash
-nano /etc/resolve.conf
+nano /etc/resolv.conf
 ```
 -> delete the line with `192.0.2.1`
--> save and exit (CTRL+O then CTRL+X)
+-> save and exit (CTRL+O, ENTER, then CTRL+X)
 
 The app needs to pick up the changes, we know it is automatically restarted when it stops, so we want to kill it.
 
